@@ -1,28 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <title>Re-ordering Grid Items!</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/style.css">
-  <title>Re-ordering Grid Items!</title>
-</head>
+    <style>
+      .container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(10, 1fr);
+      }
 
-<body>
-  <div class="container">
-    <div class="item logo">LOGO</div>
-    <div class="item nav">NAV</div>
-    <div class="item content">
-      <p>I'm the Content!</p>
+      .logo {
+        grid-column: span 2;
+        order: 1;
+      }
+
+      .nav {
+        grid-column: span 8;
+        order: 2;
+      }
+
+      .content {
+        grid-column: 1 / -1;
+        order: 3;
+      }
+
+      @media (max-width: 700px) {
+        .nav {
+          order: 1;
+          grid-column: 1 / -1;
+        }
+
+        .logo {
+          order: 2;
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="item logo">LOGO</div>
+      <div class="item nav">NAV</div>
+      <div class="item content">
+        <p>I'm the Content!</p>
+      </div>
     </div>
-  </div>
-
-  <style>
-    .container {
-      display: grid;
-      grid-gap: 20px;
-    }
-  </style>
-</body>
-
+  </body>
 </html>
