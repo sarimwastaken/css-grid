@@ -1,36 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <title>Grid Template Areas</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/style.css">
-  <title>Grid Template Areas</title>
-</head>
+    <style>
+      .container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 150px 150px 100px;
+        grid-template-areas:
+          "sidebar-1  content   sidebar-2"
+          "sidebar-1  content   sidebar-2"
+          "footer     footer    footer";
+      }
 
-<body>
-  <div class="container">
-    <div class="item item1">
-      <p>I'm Sidebar #1</p>
-    </div>
-    <div class="item item2">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, sed.</p>
-      <p>Lorem ipsum d</p>
-    </div>
-    <div class="item item3">
-      <p>I'm Sidebar #2</p>
-    </div>
-    <div class="item footer">
-      <p>I'm the footer</p>
-    </div>
-  </div>
+      .item1,
+      .item3 {
+        background-color: skyblue;
+      }
 
-  <style>
-    .container {
-      display: grid;
-      grid-gap: 20px;
-    }
-  </style>
-</body>
+      .item1 {
+        grid-area: sidebar-1;
+      }
 
+      .item2 {
+        grid-area: content;
+        background-color: var(--yellow);
+      }
+
+      .item3 {
+        grid-area: sidebar-2;
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: seagreen;
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          grid-template-areas:
+            "content  content   content"
+            "sidebar-1  sidebar-1   sidebar-2"
+            "footer     footer    footer";
+        }
+      }
+
+      @media (max-width: 450px) {
+        .container {
+          /* grid-template-columns: 1fr; */
+          grid-template-areas:
+            "content  content   content"
+            "sidebar-1  sidebar-1   sidebar-1"
+            "sidebar-2 sidebar-2 sidebar-2"
+            "footer     footer    footer";
+        }
+      }
+
+      /* .item1,
+      .item3,
+      .item2 {
+        grid-row: span 2;
+      }
+
+      .footer {
+        grid-column: 1 / -1;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="item item1">
+        <p>I'm Sidebar #1</p>
+      </div>
+      <div class="item item2">
+        <p>This is the main content</p>
+      </div>
+      <div class="item item3">
+        <p>I'm Sidebar #2</p>
+      </div>
+      <div class="item footer">
+        <p>I'm the footer</p>
+      </div>
+    </div>
+  </body>
 </html>
